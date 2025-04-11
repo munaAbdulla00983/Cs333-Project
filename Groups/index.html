@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Campus Hub - Course Reviews</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="container header-content">
+      <h1>Campus Hub: Course Reviews</h1>
+      <nav>
+        <a href="#">Home</a>
+        <a href="#create-review">Add Review</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="container">
+
+    <!-- Main Listing Page -->
+    <section class="listing">   
+      <h2>All Reviews</h2>
+
+      <!-- Search and Filter -->
+      <div class="filter-section">
+        <input type="text" placeholder="Search courses..." />
+        <select>
+          <option>Filter by Faculty</option>
+        </select>
+        <select>
+          <option>Sort by Rating</option>
+        </select>
+      </div>
+
+      <!-- Add Review Button -->
+      <a href="#create-review" class="btn">+ Add New Review</a>
+
+      <!-- Grid of Reviews -->
+      <div class="review-grid">
+        <article class="review-card">
+          <h3>Introduction to AI</h3>
+          <p><strong>Instructor:</strong> Dr. Ahmed</p>
+          <p>⭐⭐⭐⭐☆</p>
+          <a href="#detail-view" class="link">Read more</a>
+        </article>
+        <!-- Add more cards here -->
+      </div>
+
+      <!-- Pagination -->
+      <div class="pagination">
+        <button>1</button>
+        <button class="active">2</button>
+        <button>3</button>
+      </div>
+    </section>
+
+    <!-- Item Creation Form -->
+    <section id="create-review" class="form-section">
+      <h2>Add a New Course Review</h2>
+      <form>
+        <div class="form-grid">
+          <div>
+            <label>Course Name *</label>
+            <input type="text" required placeholder="e.g., Calculus I" />
+          </div>
+          <div>
+            <label>Instructor *</label>
+            <input type="text" required placeholder="e.g., Dr. Smith" />
+          </div>
+          <div>
+            <label>Rating (1-5) *</label>
+            <input type="number" min="1" max="5" required />
+          </div>
+          <div>
+            <label>Faculty *</label>
+            <select required>
+              <option>Engineering</option>
+              <option>Business</option>
+              <option>IT</option>
+            </select>
+          </div>
+          <div class="full-width">
+            <label>Review *</label>
+            <textarea rows="4" required placeholder="Write your review here..."></textarea>
+          </div>
+        </div>
+        <div class="form-buttons">
+          <button type="submit" class="btn green">Submit</button>
+          <a href="#" class="btn gray">Cancel</a>
+        </div>
+      </form>
+    </section>
+
+    <!-- Item Detail View -->
+    <section id="detail-view" class="detail-section">
+      <h2>Course: Data Structures</h2>
+      <p><strong>Instructor:</strong> Dr. Layla</p>
+      <p>Rating: ⭐⭐⭐⭐☆</p>
+      <p>This course covers essential data structures with practical examples. The instructor explains clearly but workload is high.</p>
+
+      <div class="form-buttons">
+        <button class="btn yellow">Edit</button>
+        <button class="btn red">Delete</button>
+      </div>
+
+      <div class="comments">
+        <h3>Comments</h3>
+        <div class="comment-box">
+          <p><strong>Student A:</strong> I agree! The lectures were really detailed.</p>
+        </div>
+        <textarea placeholder="Add a comment..."></textarea>
+        <button class="btn blue">Post</button>
+      </div>
+
+      <a href="#" class="link">← Back to listing</a>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 University of Bahrain - Campus Hub
+  </footer>
+
+</body>
+</html>
