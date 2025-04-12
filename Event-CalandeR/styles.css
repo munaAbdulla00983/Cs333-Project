@@ -117,8 +117,10 @@ footer {
     margin-bottom: 1rem; /* Margin for form fields */
 }
 
+.pagination{
+    justify-content: center; /* Center pagination */
 
-
+}
 .pagination button {
     padding: 8px 12px;
     border: none;
