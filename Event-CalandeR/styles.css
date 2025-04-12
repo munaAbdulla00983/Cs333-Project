@@ -117,14 +117,18 @@ footer {
     margin-bottom: 1rem; /* Margin for form fields */
 }
 
-.pagination {
-    justify-content: center; /* Center pagination */
-    background-color: #1A3C5E; /* Navy Blue */
-    border-color: #1A3C5E;
-    border-radius: 6px;
-    padding: 0.5rem 1rem;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
-}
+.pagination button {
+    padding: 8px 12px;
+    border: none;
+    background: #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .pagination .active {
+    background: #008080;
+    color: white;
+  }
 
 
 
