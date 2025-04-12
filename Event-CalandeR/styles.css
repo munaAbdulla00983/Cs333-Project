@@ -120,7 +120,6 @@ footer {
 
 
 .pagination button {
-    justify-content: center; /* Center pagination */
     padding: 8px 12px;
     border: none;
     background: #ddd;
