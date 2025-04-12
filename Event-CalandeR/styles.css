@@ -117,7 +117,10 @@ footer {
     margin-bottom: 1rem; /* Margin for form fields */
 }
 
+
+
 .pagination button {
+    justify-content: center; /* Center pagination */
     padding: 8px 12px;
     border: none;
     background: #ddd;
@@ -129,8 +132,6 @@ footer {
     background: #008080;
     color: white;
   }
-
-
 
 /* --- Responsive Design --- */
 @media (max-width: 768px) {
