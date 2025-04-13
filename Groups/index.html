@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Campus Hub - Study Group Finder</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="container header-content">
+      <h1>Campus Hub: Study Group Finder</h1>
+      <nav>
+        <a href="#">Home</a>
+        <a href="#create-group">Add Group</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="container">
+
+    <!-- Main Listing Page -->
+    <section class="listing">
+      <h2>All Study Groups</h2>
+
+      <!-- Search and Filter -->
+      <div class="filter-section">
+        <input type="text" placeholder="Search by course or topic..." />
+        <select>
+          <option>Filter by Faculty</option>
+          <option></option>
+        </select>
+        <select>
+          <option>Sort by Time</option>
+        </select>
+      </div>
+
+      <!-- Add Group Button -->
+      <a href="#create-group" class="btn">+ Add New Group</a>
+
+      <!-- Grid of Study Groups -->
+      <div class="review-grid">
+        <article class="review-card">
+          <h3>Data Structures Study Group</h3>
+          <p><strong>Course:</strong> CS220</p>
+          <p><strong>Meeting:</strong> Sundays, 3PM @ Library</p>
+          <a href="#detail-view" class="link">Read more</a>
+        </article>
+        <!-- Add more cards -->
+      </div>
+
+      <!-- Pagination -->
+      <div class="pagination">
+        <button>1</button>
+        <button class="active">2</button>
+        <button>3</button>
+      </div>
+    </section>
+
+    <!-- Item Creation Form -->
+    <section id="create-group" class="form-section">
+      <h2>Add a New Study Group</h2>
+      <form>
+        <div class="form-grid">
+          <div>
+            <label>Group Name *</label>
+            <input type="text" required placeholder="e.g., AI Weekly Study" />
+          </div>
+          <div>
+            <label>Course Code *</label>
+            <input type="text" required placeholder="e.g., CS350" />
+          </div>
+          <div>
+            <label>Meeting Time *</label>
+            <input type="text" required placeholder="e.g., Mondays at 2PM" />
+          </div>
+          <div>
+            <label>Faculty *</label>
+            <select required>
+              <option>Engineering</option>
+              <option>Business</option>
+              <option>IT</option>
+            </select>
+          </div>
+          <div class="full-width">
+            <label>Group Description *</label>
+            <textarea rows="4" required placeholder="Describe the group purpose, goals, etc."></textarea>
+          </div>
+        </div>
+        <div class="form-buttons">
+          <button type="submit" class="btn green">Submit</button>
+          <a href="#" class="btn gray">Cancel</a>
+        </div>
+      </form>
+    </section>
+
+    <!-- Item Detail View -->
+    <section id="detail-view" class="detail-section">
+      <h2>Group: Web Dev Study Team</h2>
+      <p><strong>Course:</strong> CS310</p>
+      <p><strong>Meeting Time:</strong> Wednesdays, 5PM</p>
+      <p><strong>Description:</strong> A group focused on HTML, CSS, and JavaScript practice sessions.</p>
+
+      <div class="form-buttons">
+        <button class="btn yellow">Edit</button>
+        <button class="btn red">Delete</button>
+      </div>
+
+      <div class="comments">
+        <h3>Comments</h3>
+        <div class="comment-box">
+          <p><strong>Student A:</strong> This helped me pass midterms!</p>
+        </div>
+        <textarea placeholder="Add a comment..."></textarea>
+        <button class="btn blue">Post</button>
+      </div>
+
+      <a href="#" class="link">← Back to listing</a>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    &copy; © 2025 Campus Hub. All rights reserved.
+  </footer>
+
+</body>
+</html>
