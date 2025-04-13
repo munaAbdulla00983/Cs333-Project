@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Campus Hub - Course Reviews</title>
+  <title>Campus Hub - Study Group Finder</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -11,10 +11,10 @@
   <!-- Header -->
   <header>
     <div class="container header-content">
-      <h1>Campus Hub: Course Reviews</h1>
+      <h1>Campus Hub: Study Group Finder</h1>
       <nav>
         <a href="#">Home</a>
-        <a href="#create-review">Add Review</a>
+        <a href="#create-group">Add Group</a>
       </nav>
     </div>
   </header>
@@ -23,32 +23,33 @@
   <main class="container">
 
     <!-- Main Listing Page -->
-    <section class="listing">   
-      <h2>All Reviews</h2>
+    <section class="listing">
+      <h2>All Study Groups</h2>
 
       <!-- Search and Filter -->
       <div class="filter-section">
-        <input type="text" placeholder="Search courses..." />
+        <input type="text" placeholder="Search by course or topic..." />
         <select>
           <option>Filter by Faculty</option>
+          <option></option>
         </select>
         <select>
-          <option>Sort by Rating</option>
+          <option>Sort by Time</option>
         </select>
       </div>
 
-      <!-- Add Review Button -->
-      <a href="#create-review" class="btn">+ Add New Review</a>
+      <!-- Add Group Button -->
+      <a href="#create-group" class="btn">+ Add New Group</a>
 
-      <!-- Grid of Reviews -->
+      <!-- Grid of Study Groups -->
       <div class="review-grid">
         <article class="review-card">
-          <h3>Introduction to AI</h3>
-          <p><strong>Instructor:</strong> Dr. Ahmed</p>
-          <p>⭐⭐⭐⭐☆</p>
+          <h3>Data Structures Study Group</h3>
+          <p><strong>Course:</strong> CS220</p>
+          <p><strong>Meeting:</strong> Sundays, 3PM @ Library</p>
           <a href="#detail-view" class="link">Read more</a>
         </article>
-        <!-- Add more cards here -->
+        <!-- Add more cards -->
       </div>
 
       <!-- Pagination -->
@@ -60,21 +61,21 @@
     </section>
 
     <!-- Item Creation Form -->
-    <section id="create-review" class="form-section">
-      <h2>Add a New Course Review</h2>
+    <section id="create-group" class="form-section">
+      <h2>Add a New Study Group</h2>
       <form>
         <div class="form-grid">
           <div>
-            <label>Course Name *</label>
-            <input type="text" required placeholder="e.g., Calculus I" />
+            <label>Group Name *</label>
+            <input type="text" required placeholder="e.g., AI Weekly Study" />
           </div>
           <div>
-            <label>Instructor *</label>
-            <input type="text" required placeholder="e.g., Dr. Smith" />
+            <label>Course Code *</label>
+            <input type="text" required placeholder="e.g., CS350" />
           </div>
           <div>
-            <label>Rating (1-5) *</label>
-            <input type="number" min="1" max="5" required />
+            <label>Meeting Time *</label>
+            <input type="text" required placeholder="e.g., Mondays at 2PM" />
           </div>
           <div>
             <label>Faculty *</label>
@@ -85,8 +86,8 @@
             </select>
           </div>
           <div class="full-width">
-            <label>Review *</label>
-            <textarea rows="4" required placeholder="Write your review here..."></textarea>
+            <label>Group Description *</label>
+            <textarea rows="4" required placeholder="Describe the group purpose, goals, etc."></textarea>
           </div>
         </div>
         <div class="form-buttons">
@@ -98,10 +99,10 @@
 
     <!-- Item Detail View -->
     <section id="detail-view" class="detail-section">
-      <h2>Course: Data Structures</h2>
-      <p><strong>Instructor:</strong> Dr. Layla</p>
-      <p>Rating: ⭐⭐⭐⭐☆</p>
-      <p>This course covers essential data structures with practical examples. The instructor explains clearly but workload is high.</p>
+      <h2>Group: Web Dev Study Team</h2>
+      <p><strong>Course:</strong> CS310</p>
+      <p><strong>Meeting Time:</strong> Wednesdays, 5PM</p>
+      <p><strong>Description:</strong> A group focused on HTML, CSS, and JavaScript practice sessions.</p>
 
       <div class="form-buttons">
         <button class="btn yellow">Edit</button>
@@ -111,7 +112,7 @@
       <div class="comments">
         <h3>Comments</h3>
         <div class="comment-box">
-          <p><strong>Student A:</strong> I agree! The lectures were really detailed.</p>
+          <p><strong>Student A:</strong> This helped me pass midterms!</p>
         </div>
         <textarea placeholder="Add a comment..."></textarea>
         <button class="btn blue">Post</button>
@@ -123,7 +124,7 @@
 
   <!-- Footer -->
   <footer>
-    &copy; 2025 University of Bahrain - Campus Hub
+    &copy; © 2025 Campus Hub. All rights reserved.
   </footer>
 
 </body>
