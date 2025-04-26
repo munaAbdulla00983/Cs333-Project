@@ -161,7 +161,5 @@ document.addEventListener('DOMContentLoaded', () => {
       renderReviews();
     });
   }
-
-  // بداية المشروع
   fetchData();
 });
