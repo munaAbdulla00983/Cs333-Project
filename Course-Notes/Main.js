@@ -1,150 +1,147 @@
-// Base API URL (same for all operations)
-const apiUrl = 'https://680d00cd2ea307e081d5b19c.mockapi.io/Notes/';
+const API_URL = 'https://680d00cd2ea307e081d5b19c.mockapi.io/Notes/';
+const notesGrid = document.getElementById('notesGrid');
+const searchInput = document.getElementById('searchInput');
 
-// Global variables for pagination
-let currentPage = 1;
-let totalPages = 1;
+let allNotes = []; // To store all notes for searching
 
-// Function to fetch notes from the API
-const fetchNotes = async (page = 1) => {
+// Fetch notes from API and display
+async function fetchNotes() {
   try {
-    const response = await fetch(`${apiUrl}?page=${page}&limit=5`);
+    const response = await fetch(API_URL);
     const data = await response.json();
-
-    // Update the total number of pages based on the response headers (if available)
-    totalPages = Math.ceil(parseInt(response.headers.get('x-total-count')) / 5);
-
-    // Clear the current notes
-    const notesGrid = document.getElementById('notes-grid');
-    notesGrid.innerHTML = '';
-
-    // Add the fetched notes to the grid
-    data.forEach(note => {
-      const noteCard = document.createElement('article');
-      noteCard.classList.add('note-card');
-      noteCard.innerHTML = `
-        <h2 class="note-title">${note.title}</h2>
-        <p class="note-desc">${note.description}</p>
-        <a href="detail.html?id=${note.id}" class="note-link">View Details</a>
-      `;
-      notesGrid.appendChild(noteCard);
-    });
-
-    // Enable or disable pagination buttons based on the current page
-    document.getElementById('prev-btn').disabled = page <= 1;
-    document.getElementById('next-btn').disabled = page >= totalPages;
-
-    // Update page number
-    currentPage = page;
+    allNotes = data; // Save data for search use
+    displayNotes(data);
   } catch (error) {
     console.error('Error fetching notes:', error);
   }
-};
+}
 
-// Function to fetch a single note by ID (for the detail page)
-const fetchNoteDetails = async (id) => {
-  try {
-    const response = await fetch(`${apiUrl}${id}`);
-    const note = await response.json();
+// Render notes to the page
+function displayNotes(notes) {
+  notesGrid.innerHTML = '';
 
-    // Populate the note details in the article
-    const noteDetails = document.getElementById('note-details');
-    noteDetails.innerHTML = `
+  if (notes.length === 0) {
+    notesGrid.innerHTML = '<p>No notes found.</p>';
+    return;
+  }
+
+  notes.forEach(note => {
+    const noteCard = document.createElement('article');
+    noteCard.className = 'note-card';
+    noteCard.innerHTML = `
       <h2 class="note-title">${note.title}</h2>
-      <p><strong>Subject:</strong> ${note.subject}</p>
-      <p><strong>Description:</strong> ${note.description}</p>
-      <p><strong>Download:</strong> <a href="${note.link}" class="note-link">Download Link</a></p>
-      <div class="form-actions">
-        <button class="btn btn-secondary" onclick="editNote(${note.id})">Edit</button>
-        <button class="btn btn-danger" onclick="deleteNote(${note.id})">Delete</button>
-      </div>
+      <p class="note-desc">${note.description || ''}</p>
+      <a href="detail.html?id=${note.id}" class="note-link">View Details</a>
     `;
-  } catch (error) {
-    console.error('Error fetching note details:', error);
-  }
-};
+    notesGrid.appendChild(noteCard);
+  });
+}
 
-// Function to create a new note
-const createNote = async (event) => {
-  event.preventDefault();
+// Handle search functionality
+function handleSearch() {
+  const searchTerm = searchInput.value.toLowerCase();
+  const filteredNotes = allNotes.filter(note =>
+    note.title.toLowerCase().includes(searchTerm) ||
+    note.subject.toLowerCase().includes(searchTerm) ||
+    (note.description && note.description.toLowerCase().includes(searchTerm))
+  );
+  displayNotes(filteredNotes);
+}
 
-  const title = document.getElementById('note-title').value;
-  const subject = document.getElementById('note-subject').value;
-  const description = document.getElementById('note-description').value;
-  const link = document.getElementById('note-link').value;
+// Event listener for search input
+if (searchInput) {
+  searchInput.addEventListener('input', handleSearch);
+}
 
-  const newNote = {
-    title,
-    subject,
-    description,
-    link,
-  };
+// Only fetch notes if on index page (where the grid exists)
+if (notesGrid) {
+  fetchNotes();
+}
 
-  try {
-    const response = await fetch(apiUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(newNote),
-    });
+// ---------- Additional code for create.html (Create New Note) ----------
+const createForm = document.querySelector('.form');
 
-    const data = await response.json();
-    alert('Note created successfully!');
-    window.location.href = 'index.html'; // Redirect to the notes list page
-  } catch (error) {
-    console.error('Error creating note:', error);
-  }
-};
+if (createForm) {
+  createForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
 
-// Function to delete a note
-const deleteNote = async (id) => {
-  if (confirm('Are you sure you want to delete this note?')) {
+    const title = document.getElementById('note-title').value.trim();
+    const subject = document.getElementById('note-subject').value.trim();
+    const description = document.getElementById('note-description').value.trim();
+    const link = document.getElementById('note-link').value.trim();
+
+    if (!title || !subject) {
+      alert('Please fill in the required fields.');
+      return;
+    }
+
+    const newNote = {
+      title,
+      subject,
+      description,
+      link
+    };
+
     try {
-      await fetch(`${apiUrl}${id}`, {
-        method: 'DELETE',
+      await fetch(API_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newNote)
       });
 
-      alert('Note deleted successfully!');
-      window.location.href = 'index.html'; // Redirect to the notes list page
+      alert('Note created successfully!');
+      window.location.href = 'index.html'; // Go back to listing
     } catch (error) {
-      console.error('Error deleting note:', error);
+      console.error('Error creating note:', error);
     }
-  }
-};
-
-// Function to edit a note (this will open the form with pre-filled values)
-// Placeholder function for now
-const editNote = (id) => {
-  alert('Edit functionality not yet implemented!');
-};
-
-// Event listener for the "Prev" and "Next" buttons for pagination
-document.getElementById('prev-btn').addEventListener('click', () => {
-  if (currentPage > 1) {
-    fetchNotes(currentPage - 1);
-  }
-});
-
-document.getElementById('next-btn').addEventListener('click', () => {
-  if (currentPage < totalPages) {
-    fetchNotes(currentPage + 1);
-  }
-});
-
-// Event listener for the note creation form submission
-const createNoteForm = document.getElementById('create-note-form');
-if (createNoteForm) {
-  createNoteForm.addEventListener('submit', createNote);
+  });
 }
 
-// Check if we are on the index page (display notes) or detail page (fetch note details)
-if (document.getElementById('notes-grid')) {
-  fetchNotes(currentPage); // Fetch and display notes when the index page is loaded
-}
-
+// ---------- Additional code for detail.html (View, Delete) ----------
+const detailContainer = document.querySelector('.note-card');
 const urlParams = new URLSearchParams(window.location.search);
 const noteId = urlParams.get('id');
-if (noteId && document.getElementById('note-details')) {
-  fetchNoteDetails(noteId); // Fetch and display the note details when on the detail page
+
+if (detailContainer && noteId) {
+  fetch(API_URL + noteId)
+    .then(res => res.json())
+    .then(note => {
+      detailContainer.innerHTML = `
+        <h2 class="note-title">${note.title}</h2>
+        <p><strong>Subject:</strong> ${note.subject}</p>
+        <p><strong>Description:</strong> ${note.description || 'No description provided.'}</p>
+        <p><strong>Download:</strong> <a href="${note.link}" target="_blank" class="note-link">${note.link ? 'Download Note' : 'No link available'}</a></p>
+
+        <div class="form-actions">
+          <button class="btn btn-secondary" id="editBtn">Edit</button>
+          <button class="btn btn-danger" id="deleteBtn">Delete</button>
+        </div>
+      `;
+
+      document.getElementById('deleteBtn').addEventListener('click', async () => {
+        if (confirm('Are you sure you want to delete this note?')) {
+          try {
+            await fetch(API_URL + noteId, {
+              method: 'DELETE'
+            });
+            alert('Note deleted successfully!');
+            window.location.href = 'index.html';
+          } catch (error) {
+            console.error('Error deleting note:', error);
+          }
+        }
+      });
+
+      document.getElementById('editBtn').addEventListener('click', () => {
+        // Later you can add edit functionality
+        alert('Edit functionality coming soon!');
+      });
+
+    })
+    .catch(error => {
+      console.error('Error fetching note details:', error);
+      detailContainer.innerHTML = '<p>Error loading note details.</p>';
+    });
 }
