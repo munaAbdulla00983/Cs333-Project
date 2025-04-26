@@ -16,27 +16,16 @@
     
     <section class="search-section">
       <input type="text" class="search-input" placeholder="Search notes...">
-      <button class="btn btn-primary">Add New Note</button>
+      <button class="btn btn-primary" onclick="window.location.href='create.html'">Add New Note</button>
     </section>
 
-    <section class="notes-grid">
-      <article class="note-card">
-        <h2 class="note-title">Introduction to Programming</h2>
-        <p class="note-desc">Lecture notes covering basic concepts of programming...</p>
-        <a href="#" class="note-link">View Details</a>
-      </article>
-
-      <article class="note-card">
-        <h2 class="note-title">Database Systems</h2>
-        <p class="note-desc">Relational databases, normalization, and SQL queries...</p>
-        <a href="#" class="note-link">View Details</a>
-      </article>
+    <section class="notes-grid" id="notes-grid">
+      <!-- Notes will be injected here by JavaScript -->
     </section>
 
     <div class="pagination">
-      <button class="btn btn-secondary">Prev</button>
-      <button class="btn btn-secondary">1</button>
-      <button class="btn btn-secondary">Next</button>
+      <button class="btn btn-secondary" id="prev-btn">Prev</button>
+      <button class="btn btn-secondary" id="next-btn">Next</button>
     </div>
 
   </main>
@@ -44,7 +33,7 @@
   <footer class="footer">
     &copy; 2025 Campus Hub
   </footer>
-  
+
   <script src="Main.js"></script>
 </body>
 </html>
