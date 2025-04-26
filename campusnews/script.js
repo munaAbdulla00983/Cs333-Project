@@ -14,7 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const newsPerPage = 6;
     let isSorted = false;
   
-    // Fetch Data
     async function fetchNews() {
       showLoading();
       try {
