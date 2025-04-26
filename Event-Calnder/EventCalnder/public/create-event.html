@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Event</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Create New Event</h1>
+    </header>
+
+    <main class="container mt-4">
+        <div class="text-end mb-4">
+            <a href="events.html" class="btn btn-primary">Events Calendar</a>
+        </div>
+        
+        <div id="form-container">
+            <h2>Create New Event</h2>
+            <form id="event-form" class="needs-validation" novalidate>
+                <div class="mb-3">
+                    <label for="eventName" class="form-label">Event Name</label>
+                    <input type="text" class="form-control" id="eventName" placeholder="Enter event name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="eventDate" class="form-label">Event Date</label>
+                    <input type="date" class="form-control" id="eventDate" required>
+                </div>
+                <div class="mb-3">
+                    <label for="eventLocation" class="form-label">Location</label>
+                    <input type="text" class="form-control" id="eventLocation" placeholder="Enter event location" required>
+                </div>
+                <div class="mb-3">
+                    <label for="eventCategory" class="form-label">Category</label>
+                    <select class="form-select" id="eventCategory" required>
+                        <option value="" selected disabled>Select a category</option>
+                        <option value="Academic">Academic</option>
+                        <option value="Social">Social</option>
+                        <option value="Workshop">Workshop</option>
+                        <option value="Conference">Conference</option>
+                        <option value="Seminar">Seminar</option>
+                        <option value="Sports">Sports</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="eventDescription" class="form-label">Description</label>
+                    <textarea class="form-control" id="eventDescription" rows="4" required
+                      placeholder="Provide details about the event including what attendees can expect"></textarea>
+                </div>
+                <div class="d-flex">
+                    <button type="submit" class="btn btn-primary">Create Event</button>
+                    <a href="events.html" class="btn btn-secondary ms-2">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Campus Hub. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="/src/pages/create-event.ts"></script>
+</body>
+</html>

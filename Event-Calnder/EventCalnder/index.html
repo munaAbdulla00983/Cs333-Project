@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events Calendar - Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1 class="text-center">Events Calendar</h1>
+    </header>
+
+    <main class="container mt-4">
+        <div class="grid-container">
+            <!-- Featured Event -->
+            <div class="featured-event">
+                <div class="card">
+                    <img src="https://images.pexels.com/photos/2608517/pexels-photo-2608517.jpeg" 
+                         alt="Tech Conference" 
+                         class="card-img-top">
+                    <div class="card-body">
+                        <h3>Tech Conference 2025</h3>
+                        <p>Join us for the biggest tech event of the year, featuring industry leaders,
+                           workshops, and cutting-edge innovations.</p>
+                        <a href="event-details.html?id=1" class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Upcoming Events -->
+            <div class="upcoming-events">
+                <div class="card">
+                    <div class="card-body">
+                        <h2>Upcoming Events</h2>
+                        <div class="event-list">
+                            <div class="event-item">
+                                <h4>UOB Registration</h4>
+                                <p>March 20, 2025</p>
+                                <a href="event-details.html?id=2">View Details</a>
+                            </div>
+                            <div class="event-item">
+                                <h4>Spring Campus Festival</h4>
+                                <p>April 10, 2025</p>
+                                <a href="event-details.html?id=3">View Details</a>
+                            </div>
+                            <div class="event-item">
+                                <h4>Research Symposium</h4>
+                                <p>June 20, 2025</p>
+                                <a href="event-details.html?id=4">View Details</a>
+                            </div>
+                        </div>
+                        <a href="events.html" class="btn btn-secondary w-100 mt-3">View All Events</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-4">
+            <a href="create-event.html" class="btn btn-primary">Create New Event</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Campus Hub. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/events.js"></script>
+</body>
+</html>
