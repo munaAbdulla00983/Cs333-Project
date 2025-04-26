@@ -97,10 +97,11 @@ document.addEventListener("DOMContentLoaded", () => {
       filtered = filtered.filter(g => g.faculty === faculty);
     }
 
-    const sort = sortSelect.value;
-    if (sort === "Sort by Time") {
+    const sortBy = sortSelect.value;
+    if (sortBy === "time") {
       filtered.sort((a, b) => a.time.localeCompare(b.time));
     }
+
 
     renderGroups(filtered);
   }
