@@ -1,4 +1,4 @@
-const API_URL = 'https://680cdfa72ea307e081d54d20.mockapi.io/api/v1/notes'; // MockAPI URL
+const API_URL = 'https://680d2370c47cb8074d8fa8f0.mockapi.io/api/notes'; // MockAPI URL
 
 const path = window.location.pathname;
 
