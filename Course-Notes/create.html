@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Create New Note</title>
+  <title>Add New Course Note</title>
   <link rel="stylesheet" href="styles.css"/>
 </head>
 <body>
 
   <header class="header">
-    <h1>Create New Note</h1>
+    <h1>Add New Course Note</h1>
   </header>
 
   <main class="main-container">
@@ -17,26 +17,27 @@
     <form class="form">
       <div class="form-group">
         <label for="note-title">Title <span class="required">*</span></label>
-        <input type="text" id="note-title" required>
+        <input type="text" id="note-title" name="note-title" required placeholder="Enter note title">
       </div>
 
       <div class="form-group">
         <label for="note-subject">Subject <span class="required">*</span></label>
-        <input type="text" id="note-subject" required>
+        <input type="text" id="note-subject" name="note-subject" required placeholder="e.g. Database Systems">
       </div>
 
       <div class="form-group">
         <label for="note-description">Description</label>
-        <textarea id="note-description"></textarea>
+        <textarea id="note-description" name="note-description" rows="4" placeholder="Brief description of the note"></textarea>
       </div>
 
       <div class="form-group">
-        <label for="note-link">Link (optional)</label>
-        <input type="url" id="note-link">
+        <label for="note-link">Note Link</label>
+        <input type="url" id="note-link" name="note-link" placeholder="https://example.com/your-note.pdf">
       </div>
 
       <div class="form-actions">
-        <button type="submit" class="btn btn-primary">Save Note</button>
+        <button class="btn btn-primary" type="submit">Submit</button>
+        <a href="index.html" class="btn btn-secondary">Cancel</a>
       </div>
     </form>
 
@@ -45,7 +46,7 @@
   <footer class="footer">
     &copy; 2025 Campus Hub
   </footer>
-
+  
   <script src="Main.js"></script>
 
 </body>
