@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => { 
   const form = document.querySelector('form');
   const courseNameInput = document.getElementById('course-name');
   const ratingInput = document.getElementById('rating');
@@ -11,7 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const filterRatingSelect = document.querySelector('.search-section select:nth-child(2)');
   const sortSelect = document.querySelector('.search-section select.sort'); 
 
-  let reviews = []; 
+  let allReviews = []; 
+  let reviews = [];     
   let currentPage = 1;
   const reviewsPerPage = 3;
 
@@ -23,11 +24,10 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.prepend(loadingIndicator);
     try {
       const response = await fetch('https://jsonplaceholder.typicode.com/posts');
-      if (!response.ok) {
-        throw new Error('Network error');
-      }
+      if (!response.ok) throw new Error('Network error');
       const data = await response.json();
-      reviews = data.slice(0, 10); 
+      allReviews = data.slice(0, 10);
+      reviews = [...allReviews];
       renderReviews();
     } catch (error) {
       showError('Failed to load reviews. Please try again later.');
@@ -118,12 +118,12 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-
     const newReview = {
       title: course,
       body: reviewText
     };
-    reviews.unshift(newReview); 
+    allReviews.unshift(newReview); 
+    reviews = [...allReviews];  
     renderReviews();
     form.reset();
   });
@@ -133,14 +133,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const selectedCourse = filterCourseSelect.value;
     const selectedRating = filterRatingSelect.value;
 
-    let filtered = reviews.filter(review => {
+    reviews = allReviews.filter(review => {
       const matchesSearch = review.title.toLowerCase().includes(query);
-      const matchesCourse = selectedCourse === 'Filter by Course' || review.title.includes(selectedCourse);
-      const matchesRating = selectedRating === 'Filter by Rating' || review.body.includes(selectedRating);
+      const matchesCourse = selectedCourse === '' || review.title.includes(selectedCourse);
+      const matchesRating = selectedRating === '' || review.body.includes(selectedRating);
       return matchesSearch && matchesCourse && matchesRating;
     });
 
-    reviews = filtered;
     currentPage = 1;
     renderReviews();
   };
@@ -161,5 +160,6 @@ document.addEventListener('DOMContentLoaded', () => {
       renderReviews();
     });
   }
+
   fetchData();
 });
