@@ -1,0 +1,15 @@
+entrypoint = "README.md"
+run = "sh startup.sh"
+hidden = ["startup.sh", "sql_data"]
+language = "php"
+
+[nix]
+channel = "stable-21_11"
+
+[languages]
+
+[languages.php]
+pattern = "**/*.php"
+
+[languages.css]
+pattern = "**/*.css"
