@@ -1,6 +1,21 @@
 const API_BASE = "https://c8223598-aef4-497e-8bf1-254e6acb5d4e-00-38rgo79wc4l4u.sisko.replit.dev/phase3-Campus-News-Rawan-Nabeel/index.php/endpoint";
 const API_URL = `${API_BASE}/news`;
 
+
+function sortNewsByDate() {
+  const cards = Array.from(document.querySelectorAll('.card'));
+  cards.sort((a, b) => {
+    const dateA = new Date(a.dataset.date);
+    const dateB = new Date(b.dataset.date);
+    return dateB - dateA;
+  });
+  const container = document.querySelector('.news-container');
+  cards.forEach(card => container.appendChild(card));
+}
+
+// Add event listener for sort button
+document.getElementById('sort-date-btn').addEventListener('click', sortNewsByDate);
+
 document.addEventListener("DOMContentLoaded", () => {
   const container = document.querySelector(".news-container");
   const filterBtn = document.getElementById("filter-btn");
