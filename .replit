@@ -13,3 +13,7 @@ pattern = "**/*.php"
 
 [languages.css]
 pattern = "**/*.css"
+
+[[ports]]
+localPort = 8000
+externalPort = 80

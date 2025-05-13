@@ -1,0 +1,181 @@
+/* General Styles */
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #F5F5F5;
+    color: #4A4A4A;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header and Footer */
+header, footer {
+    background-color: #008080;
+    color: #F5F5F5;
+    padding: 1rem;
+}
+
+h1 {
+    color: white;
+    font-size: 2rem;
+    text-align: center;
+}
+
+/* Card Styles */
+.card {
+    background-color: #FFFFFF;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+}
+
+/* Button Styles */
+.btn-primary {
+    background-color: white;
+    border-color: #008080;
+    color: #008080;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    text-transform: uppercase;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: #008080;
+    color: white;
+    border-color: #008080;
+}
+
+.btn-secondary {
+    background-color: #1A3C5E;
+    color: #ffffff;
+    border: 2px solid #1A3C5E;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    text-transform: uppercase;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-secondary:hover {
+    background-color: #142A44;
+    border-color: #142A44;
+}
+
+.btn-danger {
+    background-color: #FF6F61;
+    border-color: #FF6F61;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    text-transform: uppercase;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-danger:hover {
+    background-color: #E65A4D;
+    border-color: #E65A4D;
+}
+
+/* Link Styles */
+a {
+    color: #1A3C5E;
+    text-decoration: underline;
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    color: #FF6F61;
+}
+
+/* Main Section */
+main {
+    padding: 2rem;
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+form {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+/* Form Styles */
+label {
+    font-size: 1rem;
+    color: #333;
+}
+
+input[type="text"],
+select,
+textarea,
+input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: #F9F9F9;
+}
+
+input[type="text"]:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #FF6F61;
+    background-color: white;
+}
+
+textarea {
+    resize: vertical;
+    height: 150px;
+}
+
+button[type="submit"],
+#cancel-btn {
+    padding: 12px 20px;
+    font-size: 1rem;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"] {
+    background-color: #008080;
+    color: white;
+}
+
+button[type="submit"]:hover {
+    background-color: #006F6F;
+}
+
+#cancel-btn {
+    background-color: #FF6F61;
+    color: white;
+}
+
+#cancel-btn:hover {
+    background-color: #E65A4D;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .card {
+        padding: 1rem;
+    }
+    main {
+        padding: 1rem;
+    }
+}
+
+/* Focus States */
+.form-control:focus, .btn:focus {
+    outline: 3px solid #FF6F61;
+}
