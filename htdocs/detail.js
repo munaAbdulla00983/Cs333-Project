@@ -3,8 +3,86 @@ const API_URL = `${API_BASE}/news`;
 let postId = null;
 
 document.addEventListener("DOMContentLoaded", async () => {
+  setupEditDeleteHandlers();
   postId = new URLSearchParams(window.location.search).get("id");
   const container = document.getElementById("post-detail");
+
+  function setupEditDeleteHandlers() {
+    // Edit button handlers
+    document.querySelectorAll('.edit-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const cardElement = this.closest('.card');
+        const newsId = this.dataset.id;
+        
+        // Make content editable
+        cardElement.querySelectorAll('p').forEach(p => {
+          p.contentEditable = true;
+          p.style.backgroundColor = '#f0f0f0';
+        });
+        
+        // Add save button
+        const saveBtn = document.createElement('button');
+        saveBtn.textContent = 'Save';
+        saveBtn.className = 'btn-primary';
+        saveBtn.onclick = () => saveChanges(cardElement, newsId);
+        
+        this.style.display = 'none';
+        cardElement.appendChild(saveBtn);
+      });
+    });
+
+    // Delete button handlers
+    document.querySelectorAll('.delete-btn').forEach(btn => {
+      btn.addEventListener('click', async function() {
+        const newsId = this.dataset.id;
+        if(confirm('Are you sure you want to delete this news item?')) {
+          try {
+            const response = await fetch(`${API_URL}/${newsId}`, {
+              method: 'DELETE'
+            });
+            
+            if(response.ok) {
+              this.closest('.card').remove();
+              alert('News deleted successfully');
+            } else {
+              alert('Failed to delete news');
+            }
+          } catch(err) {
+            console.error('Error:', err);
+            alert('Error deleting news');
+          }
+        }
+      });
+    });
+  }
+
+  async function saveChanges(cardElement, newsId) {
+    const title = cardElement.querySelector('h2').textContent;
+    const content = cardElement.querySelector('p:last-of-type').textContent;
+    
+    try {
+      const response = await fetch(`${API_URL}/${newsId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams({
+          title: title,
+          content: content
+        })
+      });
+      
+      if(response.ok) {
+        alert('Changes saved successfully');
+        location.reload();
+      } else {
+        alert('Failed to save changes');
+      }
+    } catch(err) {
+      console.error('Error:', err);
+      alert('Error saving changes');
+    }
+  }
 
   if (!postId) {
     container.innerHTML = "<p>No post selected.</p>";
