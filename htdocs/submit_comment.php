@@ -1,4 +1,3 @@
-
 <?php
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
@@ -14,9 +13,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 
 // Setup DB connection
 $host = "127.0.0.1";
-$user = getenv("db_user");
-$pass = getenv("db_pass");
-$db   = getenv("db_name");
+$user = $_ENV["db_user"];
+$pass = $_ENV["db_pass"];
+$db   = $_ENV["db_name"];
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$db;charset=utf8mb4", $user, $pass);
