@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       alert("News submitted successfully.");
       form.reset();
-      window.location.href = "Main_Listing.html";
+        window.location.href = "Campus_news.html";
     } catch (err) {
       alert("Submission error: " + err.message);
       submitBtn.disabled = false;
@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
     cancelBtn.addEventListener("click", (e) => {
       e.preventDefault();
       if (confirm("Cancel this post and return to the listing?")) {
-        window.location.href = "Main_Listing.html";
+        window.location.href = "Campus_news.html";
       }
     });
   }
