@@ -1,6 +1,29 @@
 const API_BASE = "/index.php/endpoint";
 const API_URL = `${API_BASE}/news`;
 
+// Function to handle delete
+async function deleteNews(newsId) {
+  if (confirm('Are you sure you want to delete this news?')) {
+    try {
+      const response = await fetch(`${API_URL}/${newsId}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      
+      if (response.ok) {
+        window.location.reload();
+      } else {
+        alert('Failed to delete news');
+      }
+    } catch (err) {
+      console.error('Error:', err);
+      alert('Error deleting news');
+    }
+  }
+}
+
 
 function sortNewsByDate() {
   const cards = Array.from(document.querySelectorAll('.card'));

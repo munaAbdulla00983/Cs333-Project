@@ -1,4 +1,4 @@
-const API_BASE = "/endpoint";
+const API_BASE = "/index.php/endpoint";
 const API_URL = `${API_BASE}/news`;
 let postId = null;
 
