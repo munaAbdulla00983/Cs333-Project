@@ -1,3 +1,64 @@
+
+.news-post {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.post-meta {
+  margin: 1rem 0;
+  color: #666;
+}
+
+.post-content {
+  line-height: 1.6;
+  margin: 2rem 0;
+}
+
+.comments-section {
+  margin-top: 2rem;
+}
+
+.comment {
+  border-bottom: 1px solid #eee;
+  padding: 1rem 0;
+}
+
+.comment strong {
+  color: #333;
+}
+
+.comment small {
+  color: #666;
+  display: block;
+  margin-top: 0.5rem;
+}
+
+#comment-form {
+  margin: 2rem 0;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.form-group textarea {
+  height: 100px;
+}
+
 /* General Styles */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
