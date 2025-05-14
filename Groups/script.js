@@ -14,7 +14,7 @@ var code="";
           var formData = {
             Ccode: code[0].Ccode 
           };
-          const response = await fetch('https://5207761d-52f6-4f25-af61-f48982a42036-00-3s1z67zpflpu6.sisko.replit.dev/delete_study_group.php', {
+          const response = await fetch('https://5207761d-52f6-4f25-af61-f48982a42036-00-3s1z67zpflpu6.sisko.replit.dev/', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
@@ -57,7 +57,7 @@ var code="";
       var formData = {
         Ccode: cid  
       };
-      const response = await fetch('https://5207761d-52f6-4f25-af61-f48982a42036-00-3s1z67zpflpu6.sisko.replit.dev/get_study_group_cid.php', {
+      const response = await fetch('https://5207761d-52f6-4f25-af61-f48982a42036-00-3s1z67zpflpu6.sisko.replit.dev/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -97,7 +97,7 @@ var code="";
         sortby: document.getElementById('sortedBy').value
       };
 
-      const response = await fetch('https://5207761d-52f6-4f25-af61-f48982a42036-00-3s1z67zpflpu6.sisko.replit.dev/get_study_group_filter.php', {
+      const response = await fetch('https://5207761d-52f6-4f25-af61-f48982a42036-00-3s1z67zpflpu6.sisko.replit.dev/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -131,7 +131,7 @@ var code="";
         Faculty: document.getElementById('Faculty').value,
         Gdesc: document.getElementById('Gdesc').value
       };
-      const response = await fetch('https://5207761d-52f6-4f25-af61-f48982a42036-00-3s1z67zpflpu6.sisko.replit.dev/insert_study_group.php', {
+      const response = await fetch('https://5207761d-52f6-4f25-af61-f48982a42036-00-3s1z67zpflpu6.sisko.replit.dev/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -150,12 +150,12 @@ var code="";
 
     async function fetchStudyGroups() {
       try {
-         const response = await fetch('https://5207761d-52f6-4f25-af61-f48982a42036-00-3s1z67zpflpu6.sisko.replit.dev/get_study_group.php');
+         const response = await fetch('https://5207761d-52f6-4f25-af61-f48982a42036-00-3s1z67zpflpu6.sisko.replit.dev/');
         studyGroups = await response.json();
         
         renderPage();
 
-        const response1 = await fetch('https://5207761d-52f6-4f25-af61-f48982a42036-00-3s1z67zpflpu6.sisko.replit.dev/get_comment.php');
+        const response1 = await fetch('https://5207761d-52f6-4f25-af61-f48982a42036-00-3s1z67zpflpu6.sisko.replit.dev/');
         const data1 = await response1.json();
         const container1 = document.getElementById('cmnts');
         container1.innerHTML = '';
@@ -231,7 +231,7 @@ document.getElementById('post').addEventListener('click', async function(event){
     Gname: document.getElementById('SGroups').value,
     Comment: document.getElementById('Comment').value,   
   };
-  const response = await fetch('https://5207761d-52f6-4f25-af61-f48982a42036-00-3s1z67zpflpu6.sisko.replit.dev/insert_comment.php', {
+  const response = await fetch('https://5207761d-52f6-4f25-af61-f48982a42036-00-3s1z67zpflpu6.sisko.replit.dev/', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
