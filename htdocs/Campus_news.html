@@ -6,19 +6,13 @@
   <title>Campus Hub - News</title>
   <link rel="stylesheet" href="style.css">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script>
-    window.jQuery || document.write('<script src="https://code.jquery.com/jquery-3.6.0.min.js"><\/script>')
-  </script>
-  <script src="listing.js"></script>
+  <script src="campus_news.js" defer></script>
 </head>
 <body>
-
   <!-- Header -->
   <header>
     <h1>UoB Campus News</h1>
   </header>
-
-  <!-- ... keep everything above the same -->
 
   <main>
     <!-- Heading + Add News -->
@@ -31,46 +25,17 @@
     <input type="search" placeholder="Search news..." class="form-control" id="search-bar" style="width: 100%; padding: 0.75rem; border-radius: 8px; border: 2px solid #a5c9ff;" />
 
     <div style="margin-top: 1rem; display: flex; gap: 1rem;">
-      <button class="btn btn-secondary" id="sort-date-btn">Sort by Date
-      </button>
+      <button class="btn btn-secondary" id="sort-date-btn">Sort by Date</button>
       <button class="btn btn-secondary" id="filter-btn">Filter</button>
     </div>
 
-
-    <!-- News Box Section -->
-    <div class="news-container" style="margin-top: 2rem; display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));">
-
-      <!-- News Card 1 -->
-      <div class="card" style="border-radius: 8px;">
-        <h3>Exam Schedule Released</h3>
-        <p>Final exams for Spring 2025 will start from June 1st.</p>
-      <a href="detail.html?id=2">Read more</a>
-      </div>
-
-      <!-- News Card 2 -->
-      <div class="card" style="border-radius: 8px;">
-        <h3>Campus Job Fair</h3>
-        <p>Don't miss the annual career fair happening next week.</p>
-      <a href="detail.html?id=2">Read more</a>
-      </div>
-
-      <!-- News Card 3 -->
-      <div class="card" style="border-radius: 8px;">
-        <h3> AI & Cybersecurity workshop</h3>
-        <p>  This workshop will offer practcal...</p>
-      <a href="detail.html?id=2">Read more</a>
-      </div>
-
-    </div>
+    <!-- News Container -->
+    <div class="news-container" style="margin-top: 2rem; display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));"></div>
   </main>
 
   <!-- Footer -->
   <footer>
     <p>&copy; 2025 Campus Hub</p>
   </footer>
-  <div id="news-container"></div>
-  <script src="js/campus_news.js"></script>
-
-
 </body>
 </html>

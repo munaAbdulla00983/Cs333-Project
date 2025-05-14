@@ -17,3 +17,15 @@ pattern = "**/*.css"
 [[ports]]
 localPort = 8000
 externalPort = 80
+
+[workflows]
+runButton = "Run PHP Server"
+
+[[workflows.workflow]]
+name = "Run PHP Server"
+author = 42596910
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "php -S 0.0.0.0:8080 -t htdocs"
