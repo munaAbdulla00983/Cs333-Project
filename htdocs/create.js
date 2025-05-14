@@ -49,3 +49,33 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.querySelector('form');
+  const cancelBtn = document.getElementById('cancel-btn');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const formData = new FormData(form);
+    
+    try {
+      const response = await fetch('/index.php/endpoint/news', {
+        method: 'POST',
+        body: formData
+      });
+      
+      if (response.ok) {
+        window.location.href = 'Campus_news.html';
+      } else {
+        alert('Failed to create news post');
+      }
+    } catch (err) {
+      console.error('Error:', err);
+      alert('Error creating news post');
+    }
+  });
+
+  cancelBtn.addEventListener('click', () => {
+    window.location.href = 'Campus_news.html';
+  });
+});
