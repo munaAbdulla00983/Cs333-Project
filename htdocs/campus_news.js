@@ -1,38 +1,44 @@
-
-const API_BASE = "/endpoint";
+const API_BASE = "/index.php/endpoint";
 const API_URL = `${API_BASE}/news`;
 
 document.addEventListener("DOMContentLoaded", async () => {
   const container = document.querySelector(".news-container");
 
-  try {
-    const res = await fetch(API_URL);
-    const result = await res.json();
-    const newsList = result.data || [];
+  async function loadData() {
+    container.innerHTML = "<p>Loading...</p>";
+    try {
+      const res = await fetch(API_URL);
+      const result = await res.json();
+      if (!result || !("data" in result)) throw new Error("Invalid data from API");
 
+      render(result.data);
+    } catch (err) {
+      container.innerHTML = `<p style="color:red;">${err.message}</p>`;
+    }
+  }
+
+  function render(posts) {
     container.innerHTML = "";
 
-    if (newsList.length === 0) {
+    if (posts.length === 0) {
       container.innerHTML = "<p>No news posts found.</p>";
       return;
     }
 
-    newsList.forEach(news => {
+    posts.forEach(post => {
       const card = document.createElement("div");
       card.className = "card";
-      card.setAttribute("data-date", news.published_at);
-      
+      card.setAttribute("data-date", post.published_at);
+
       card.innerHTML = `
-        <h3>${news.title}</h3>
-        <p><strong>Author:</strong> ${news.author}</p>
-        <p><strong>Category:</strong> ${news.category}</p>
-        <p>${news.content.substring(0, 150)}...</p>
-        <a href="detail.html?id=${news.id}">Read more</a>
+        <h3>${post.title}</h3>
+        <p>${post.content.slice(0, 100)}...</p>
+        <a href="detail.html?id=${post.id}">Read more</a>
       `;
 
       container.appendChild(card);
     });
-  } catch (err) {
-    container.innerHTML = "<p>Error loading news: " + err.message + "</p>";
   }
+
+  loadData(); // Initial load of news articles
 });
