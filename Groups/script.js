@@ -230,6 +230,7 @@ var code="";
 
 document.getElementById('post').addEventListener('click', async function(event){
   event.preventDefault();
+    alert("hi");
   const cmtData = {
     Sname: document.getElementById('Sname').value,
     Gname: document.getElementById('SGroups').value,
