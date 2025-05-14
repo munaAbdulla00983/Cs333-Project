@@ -12,7 +12,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit;
 }
 
-$host = "0.0.0.0";
+// Setup DB connection
+$host = "127.0.0.1";
 $user = getenv("db_user");
 $pass = getenv("db_pass");
 $db   = getenv("db_name");
