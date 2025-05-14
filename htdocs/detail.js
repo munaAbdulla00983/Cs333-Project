@@ -38,18 +38,22 @@ document.addEventListener("DOMContentLoaded", async () => {
         if(confirm('Are you sure you want to delete this news item?')) {
           try {
             const response = await fetch(`${API_URL}/${newsId}`, {
-              method: 'DELETE'
+              method: 'DELETE',
+              headers: {
+                'Content-Type': 'application/json'
+              }
             });
             
             if(response.ok) {
-              this.closest('.card').remove();
+              window.location.href = 'Campus_news.html';
               alert('News deleted successfully');
             } else {
-              alert('Failed to delete news');
+              const errorData = await response.json();
+              alert('Failed to delete news: ' + (errorData.error || 'Unknown error'));
             }
           } catch(err) {
             console.error('Error:', err);
-            alert('Error deleting news');
+            alert('Error deleting news: ' + err.message);
           }
         }
       });
@@ -59,6 +63,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   async function saveChanges(cardElement, newsId) {
     const title = cardElement.querySelector('h2').textContent;
     const content = cardElement.querySelector('p:last-of-type').textContent;
+    const author = cardElement.querySelector('p:nth-of-type(1)').textContent.replace('Author:', '').trim();
+    const category = cardElement.querySelector('p:nth-of-type(3)').textContent.replace('Category:', '').trim();
+    const published_at = new Date().toISOString().slice(0, 19).replace('T', ' ');
     
     try {
       const response = await fetch(`${API_URL}/${newsId}`, {
@@ -67,8 +74,11 @@ document.addEventListener("DOMContentLoaded", async () => {
           'Content-Type': 'application/x-www-form-urlencoded',
         },
         body: new URLSearchParams({
-          title: title,
-          content: content
+          title,
+          content,
+          author,
+          category,
+          published_at
         })
       });
       
@@ -76,11 +86,12 @@ document.addEventListener("DOMContentLoaded", async () => {
         alert('Changes saved successfully');
         location.reload();
       } else {
-        alert('Failed to save changes');
+        const errorData = await response.json();
+        alert('Failed to save changes: ' + (errorData.error || 'Unknown error'));
       }
     } catch(err) {
       console.error('Error:', err);
-      alert('Error saving changes');
+      alert('Error saving changes: ' + err.message);
     }
   }
 
