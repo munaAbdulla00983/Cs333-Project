@@ -1,4 +1,4 @@
-const API_BASE = "https://c8223598-aef4-497e-8bf1-254e6acb5d4e-00-38rgo79wc4l4u.sisko.replit.dev/phase3-Campus-News-Rawan-Nabeel/index.php/endpoint";
+const API_BASE = "/index.php/endpoint";
 const API_URL = `${API_BASE}/news`;
 let postId = null;
 
