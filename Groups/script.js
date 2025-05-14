@@ -156,7 +156,7 @@ var code="";
       try {
          const response = await fetch('https://5207761d-52f6-4f25-af61-f48982a42036-00-3s1z67zpflpu6.sisko.replit.dev/get_study_group.php');
         studyGroups = await response.json();
-
+        
         renderPage();
 
         const response1 = await fetch('https://5207761d-52f6-4f25-af61-f48982a42036-00-3s1z67zpflpu6.sisko.replit.dev/get_comment.php');
@@ -171,7 +171,7 @@ var code="";
           ${comments.Gname} : ${comments.Comment} <br><br>`;
           container1.appendChild(p);
         });
-
+          
           studyGroups.forEach(group => {
           const option = document.createElement('option');
           option.value = group.Gname;
