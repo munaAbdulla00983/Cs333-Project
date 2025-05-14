@@ -5,7 +5,6 @@ var code="";
 
 
     document.getElementById('deleteByCid').addEventListener('click',async function(event) {
-
       event.preventDefault(); 
       if(code!="")
       {
@@ -43,6 +42,7 @@ var code="";
       document.getElementById('Gdesc').value =code[0].GDesc;
 
     });
+
     document.addEventListener('click', function (e) {
       const target = e.target.closest('a[href="#detail-view"]');
       if (target) {
@@ -51,7 +51,9 @@ var code="";
         fetchStudyGroupsByCid(value);
       }
     });
-    async function fetchStudyGroupsByCid(cid){
+
+    async function fetchStudyGroupsByCid(cid)
+    {
       document.getElementById("editByCid").style.visibility = "hidden";
       document.getElementById("deleteByCid").style.visibility = "hidden";
       var formData = {
@@ -84,8 +86,8 @@ var code="";
         container.focus();
       }, 100);
     }
-    async function searchData(){
 
+    async function searchData(){
        var txtdata=document.getElementById('searchByText').value;
       if(txtdata===""){
         txtdata="null";
@@ -111,11 +113,13 @@ var code="";
       event.preventDefault(); 
       searchData();      
     });
+
     document.getElementById('searchByText').addEventListener('input', async function(event) {
       event.preventDefault(); 
       searchData();      
 
     });
+
     document.getElementById('sortedBy').addEventListener('change', async function(event) {
       event.preventDefault(); 
       searchData();      
@@ -150,7 +154,7 @@ var code="";
 
     async function fetchStudyGroups() {
       try {
-         const response = await fetch('https://5207761d-52f6-4f25-af61-f48982a42036-00-3s1z67zpflpu6.sisko.replit.dev/get_study_group.php');
+         const response = await fetch('https://replit.com/@munabawaenah03/my-app#htdocs/get_study_group.php');
         studyGroups = await response.json();
         
         renderPage();
