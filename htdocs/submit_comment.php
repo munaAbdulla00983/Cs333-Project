@@ -22,18 +22,21 @@ try {
     $pdo = new PDO("mysql:host=$host;dbname=$db;charset=utf8mb4", $user, $pass);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
-    echo json_encode(["error" => true, "message" => "Database connection failed: " . $e->getMessage()]);
+    error_log("Database connection failed: " . $e->getMessage());
+    http_response_code(500);
+    echo json_encode(["error" => true, "message" => "Server error occurred"]);
     exit;
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data = json_decode(file_get_contents("php://input"), true) ?? $_POST;
 
-    $name = $data["name"] ?? '';
-    $comment = $data["comment"] ?? '';
-    $news_id = $data["news_id"] ?? '';
+    $name = htmlspecialchars(trim($data["name"] ?? ''));
+    $comment = htmlspecialchars(trim($data["comment"] ?? ''));
+    $news_id = filter_var($data["news_id"] ?? '', FILTER_VALIDATE_INT);
 
     if (!$name || !$comment || !$news_id) {
+        http_response_code(400);
         echo json_encode(["error" => true, "message" => "Missing required fields"]);
         exit;
     }
@@ -43,9 +46,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->execute([$news_id, $name, $comment]);
         echo json_encode(["error" => false, "message" => "Comment posted successfully"]);
     } catch (PDOException $e) {
-        echo json_encode(["error" => true, "message" => "Failed to post comment: " . $e->getMessage()]);
+        error_log("Failed to post comment: " . $e->getMessage());
+        http_response_code(500);
+        echo json_encode(["error" => true, "message" => "Failed to post comment"]);
     }
 } else {
+    http_response_code(405);
     echo json_encode(["error" => true, "message" => "Invalid request method"]);
 }
 ?>
