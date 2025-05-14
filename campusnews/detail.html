@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>News Detail - Campus Hub</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins&display=swap" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script defer src="detail.js"></script>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <h1>Campus News Details</h1>
+  </header>
+
+  <!-- Navigation -->
+  <nav style="padding: 1rem; background-color: #e0f7f7;">
+    <a href="Campus_news.html" class="btn btn-secondary">Back to Home Page</a>
+  </nav>
+
+  <main>
+    <!-- NEWS CARD 1 -->
+    <div class="card" data-date="2025-05-20">
+      <h2>AI & Cybersecurity Workshop</h2>
+      <p><strong>Author:</strong> Prof. Ahmed Latif</p>
+      <p><strong>Date:</strong> May 20, 2025</p>
+      <p><strong>Category:</strong> Workshop</p>
+      <p><strong>Location:</strong> Room A-204, IT Building</p>
+      <p>This workshop will offer practical experience in defending against AI-based cyber threats and understanding ML vulnerabilities.</p>
+
+        <!-- Edit/Delete Buttons -->
+        <button class="edit-btn" data-id="1">Edit</button>
+        <button class="delete-btn" data-id="1">Delete</button>
+      </div>
+    </div>
+
+    <!-- NEWS CARD 2 -->
+    <div class="card" data-date="2025-05-25">
+      <h2>Campus Hiring Fair 2025</h2>
+      <p><strong>Author:</strong> Career Services</p>
+      <p><strong>Date:</strong> May 25, 2025</p>
+      <p><strong>Category:</strong> Announcement</p>
+      <p><strong>Location:</strong> Main Auditorium</p>
+      <p>Top recruiters from Bahrain and GCC will be attending. Carry your resume and dress formally. Entry starts at 9:00 AM.</p>
+
+        <!-- Edit/Delete Buttons -->
+        <button id="editBtn-2" class="edit-btn">Edit</button>
+        <button id="deleteBtn-2" class="delete-btn">Delete</button>
+      </div>
+    </div>
+
+    <!-- NEWS CARD 3 -->
+    <div class="card" data-date="2025-05-10">
+      <h2>Final Exam Schedule Published</h2>
+      <p><strong>Author:</strong> Registrar Office</p>
+      <p><strong>Date:</strong> May 10, 2025</p>
+      <p><strong>Category:</strong> Exam Update</p>
+      <p><strong>Exams Start:</strong> June 1, 2025</p>
+      <p>Timetable is now available on the student portal. All students must check exam halls and timings before May 25.</p>
+
+
+        <!-- Edit/Delete Buttons -->
+        <button id="editBtn-3" class="edit-btn">Edit</button>
+        <button id="deleteBtn-3" class="delete-btn">Delete</button>
+      </div>
+    </div>
+    <!-- COMMENT SECTION -->
+    <div class="card">
+      <h3>Comments</h3>
+
+      <!-- Display existing comments -->
+      <div id="commentsList" style="margin-bottom: 1rem;">
+        <p><strong>Ali:</strong> Excited for the AI workshop, sounds great!</p>
+        <p><strong>Fatima:</strong> Thank you for the update, job fair is much needed!</p>
+      </div>
+
+      <!-- Comment form -->
+      <form id="commentForm" onsubmit="submitComment(event)">
+        <label class="form-label" for="name">Your Name</label>
+        <input class="form-control" type="text" id="name" placeholder="Enter your name" required />
+
+        <label class="form-label" for="comment">Your Comment</label>
+        <textarea class="form-control" id="comment" rows="4" placeholder="Write your comment..." required></textarea>
+
+        <button type="submit" class="btn btn-secondary">Post Comment</button>
+        <p id="commentMsg" style="color: green; margin-top: 10px;"></p>
+      </form>
+    </div>
+    </main>
+
+  
+
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 2025 Campus Hub. All rights reserved.</p>
+    </footer>
+  
+    <script>
+    function submitComment(event) {
+      event.preventDefault();
+
+      const name = document.getElementById("name").value.trim();
+      const comment = document.getElementById("comment").value.trim();
+
+      if (!name || !comment) {
+        alert("Both name and comment are required!");
+        return;
+      }
+
+      const news_id = 1; // Replace this with the actual news ID if needed
+      const formData = new FormData();
+      formData.append("name", name);
+      formData.append("comment", comment);
+      formData.append("news_id", news_id);
+
+      fetch("submit_comment.php", {
+        method: "POST",
+        body: formData
+      })
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById("commentMsg").innerText = data.message;
+        document.getElementById("commentMsg").style.color = "green";
+        document.getElementById("commentForm").reset();
+
+        // Optional: Add new comment to the comment list without refreshing
+        const newComment = document.createElement("p");
+        newComment.innerHTML = `<strong>${name}:</strong> ${comment}`;
+        document.getElementById("commentsList").appendChild(newComment);
+      })
+      .catch(err => {
+        document.getElementById("commentMsg").style.color = "red";
+        document.getElementById("commentMsg").innerText = "Failed to post comment.";
+      });
+    }
+    </script>
+
+  </main>
+
+  
+</body>
+</html>
