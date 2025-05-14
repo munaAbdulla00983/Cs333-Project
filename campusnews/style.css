@@ -1,0 +1,71 @@
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #F5F5F5;
+    color: #4A4A4A;
+  }
+
+  header, footer {
+    background-color: #008080;
+    color: #F5F5F5;
+    padding: 1rem;
+  }
+
+  h1, h2, h3 {
+    font-family: 'Poppins', sans-serif;
+    color: #008080;
+  }
+
+  .card {
+    background-color: #FFFFFF;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .btn-primary {
+    background-color: #008080;
+    border-color: #008080;
+  }
+
+  .btn-primary:hover {
+    background-color: #006666;
+    border-color: #006666;
+  }
+
+  .btn-secondary {
+    background-color: #1A3C5E;
+    border-color: #1A3C5E;
+  }
+
+  .btn-secondary:hover {
+    background-color: #142A44;
+    border-color: #142A44;
+  }
+
+  .btn-danger {
+    background-color: #FF6F61;
+    border-color: #FF6F61;
+  }
+
+  .btn-danger:hover {
+    background-color: #E65A4D;
+    border-color: #E65A4D;
+  }
+
+  a {
+    color: #1A3C5E;
+    text-decoration: underline;
+  }
+
+  a:hover {
+    color: #FF6F61;
+  }
+
+  main {
+    padding: 2rem;
+  }
+
+  .form-control, .form-label {
+    margin-bottom: 1rem;
+  }

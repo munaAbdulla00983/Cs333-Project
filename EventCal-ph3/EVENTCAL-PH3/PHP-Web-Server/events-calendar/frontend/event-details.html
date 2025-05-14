@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Details - Campus Hub</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="container">
+                <div class="logo">
+                    <h1><i class="fas fa-calendar-days"></i> Events Calendar</h1>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="events.html">All Events</a></li>
+                    <li><a href="create-event.html">Create Event</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <!-- Event Details Section -->
+            <section id="eventDetails" class="event-details-section">
+                <!-- Event details will be loaded dynamically here -->
+            </section>
+            
+            <!-- Comments Section -->
+            <section class="comments-section">
+                <h3><i class="fas fa-comments"></i> Comments</h3>
+                
+                <div class="comment-form-container">
+                    <h4>Add a Comment</h4>
+                    <form id="commentForm" class="comment-form">
+                        <div class="form-group">
+                            <label for="author_name">Your Name*</label>
+                            <input type="text" id="author_name" name="author_name" required placeholder="Enter your name">
+                            <span class="error-message">Please enter your name</span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="content">Comment*</label>
+                            <textarea id="content" name="content" rows="4" placeholder="Share your thoughts..." required></textarea>
+                            <span class="error-message">Please enter a comment</span>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i> Post Comment
+                        </button>
+                    </form>
+                </div>
+                
+                <div id="commentsList" class="comments-list">
+                    <!-- Comments will be loaded here -->
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Campus Hub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/event-details.js"></script>
+</body>
+</html>

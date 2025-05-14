@@ -1,0 +1,150 @@
+/* --- Design System Colors --- */
+body {
+    background-color: #F5F5F5; /* Off-White */
+    font-family: 'Open Sans', sans-serif;
+    color: #4A4A4A; /* Dark Gray */
+}
+
+header, footer {
+    background-color: #008080; /* Teal */
+    color: #F5F5F5; /* Off-White */
+    padding: 1rem;
+    text-align: center;
+}
+
+header h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.5rem; /* Header Title */
+}
+
+h2, h3 {
+    color: #008080; /* Teal */
+    text-align: center; /* Center headings */
+}
+
+h4 {
+    color: #008080; /* Teal for section titles */
+}
+
+a {
+    color: #1A3C5E; /* Navy Blue for links */
+    text-decoration: underline; /* Underlined links */
+}
+
+a:hover, a:active {
+    color: #FF6F61; /* Coral for hover/active links */
+}
+
+/* --- Button Styles --- */
+.btn-primary {
+    background-color: #008080; /* Teal */
+    border-color: #008080;
+    color: #FFFFFF;
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.btn-primary:hover {
+    background-color: #006666; /* Darker Teal */
+    border-color: #006666;
+}
+
+.btn-secondary {
+    background-color: #1A3C5E; /* Navy Blue */
+    border-color: #1A3C5E;
+    color: #FFFFFF;
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.btn-secondary:hover {
+    background-color: #142A44; /* Darker Navy */
+    border-color: #142A44;
+}
+
+.btn-danger {
+    background-color: #FF6F61; /* Coral */
+    border-color: #FF6F61;
+    color: #FFFFFF;
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.btn-danger:hover {
+    background-color: #E65A4D; /* Darker Coral */
+    border-color: #E65A4D;
+}
+
+/* --- Form Controls --- */
+.form-control {
+    background-color: #FFFFFF; /* White */
+    border-radius: 6px;
+    padding: 0.75rem;
+    border: 1px solid #CCCCCC;
+}
+
+.form-label {
+    color: #4A4A4A; /* Dark Gray for form labels */
+}
+
+/* --- Card Styles --- */
+.card {
+    background-color: #FFFFFF; /* White */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Light shadow */
+    border-radius: 6px;
+    padding: 1.25rem;
+}
+
+.card-body h5 {
+    color: #008080; /* Teal for card titles */
+}
+
+/* --- Footer Styling --- */
+footer {
+    text-align: center;
+    padding: 1rem;
+}
+
+/* --- Spacing and Margins --- */
+.container {
+    padding: 2rem; /* Main section padding */
+}
+
+.mb-3 {
+    margin-bottom: 1rem; /* Margin for form fields */
+}
+
+.pagination{
+    justify-content: center; /* Center pagination */
+
+}
+.pagination button {
+    padding: 8px 12px;
+    border: none;
+    background: #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .pagination .active {
+    background: #008080;
+    color: white;
+  }
+
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem; /* Smaller font size for header */
+    }
+
+    h2 {
+        font-size: 1.5rem; /* Smaller font size for h2 */
+    }
+
+    .card {
+        margin-bottom: 1rem; /* Margin between cards */
+    }
+}
