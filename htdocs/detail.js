@@ -1,11 +1,15 @@
+
 const API_BASE = "/index.php/endpoint";
 const API_URL = `${API_BASE}/news`;
-let postId = null;
 
 document.addEventListener("DOMContentLoaded", async () => {
   const container = document.getElementById("post-detail");
-  postId = new URLSearchParams(window.location.search).get("id");
+  if (!container) {
+    console.error("Post detail container not found");
+    return;
+  }
 
+  const postId = new URLSearchParams(window.location.search).get("id");
   if (!postId) {
     container.innerHTML = "<p>No post selected.</p>";
     return;
@@ -24,6 +28,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 function renderPost(post) {
   const container = document.getElementById("post-detail");
+  if (!container) return;
+
   container.innerHTML = `
     <article class="news-post">
       <h2>${post.title}</h2>
@@ -54,14 +60,16 @@ function renderPost(post) {
     </article>
   `;
 
-  // Add comment form handler
-  document.getElementById("comment-form").addEventListener("submit", async (e) => {
+  const commentForm = document.getElementById("comment-form");
+  if (!commentForm) return;
+
+  commentForm.addEventListener("submit", async (e) => {
     e.preventDefault();
-    const name = document.getElementById("name").value.trim();
-    const comment = document.getElementById("comment").value.trim();
+    const name = document.getElementById("name")?.value.trim() || '';
+    const comment = document.getElementById("comment")?.value.trim() || '';
 
     try {
-      const res = await fetch("submit_comment.php", {
+      const res = await fetch(`${API_URL}/${postId}/comments`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -79,7 +87,7 @@ function renderPost(post) {
       }
 
       alert("Comment posted successfully!");
-      document.getElementById("comment-form").reset();
+      commentForm.reset();
       loadComments();
     } catch (err) {
       alert("Error posting comment: " + err.message);
@@ -88,10 +96,15 @@ function renderPost(post) {
 }
 
 function loadComments() {
+  const commentsList = document.getElementById("comments-list");
+  if (!commentsList) return;
+
+  const postId = new URLSearchParams(window.location.search).get("id");
+  if (!postId) return;
+
   fetch(`${API_URL}/${postId}/comments`)
     .then(res => res.json())
     .then(comments => {
-      const commentsList = document.getElementById("comments-list");
       commentsList.innerHTML = comments.map(comment => `
         <div class="comment">
           <strong>${comment.author}</strong>
@@ -101,7 +114,6 @@ function loadComments() {
       `).join("");
     })
     .catch(err => {
-      document.getElementById("comments-list").innerHTML = 
-        `<p style="color:red;">Error loading comments: ${err.message}</p>`;
+      commentsList.innerHTML = `<p style="color:red;">Error loading comments: ${err.message}</p>`;
     });
 }

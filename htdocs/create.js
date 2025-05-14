@@ -1,20 +1,27 @@
-const API_BASE = "/index.php/endpoint";
-const API_URL = `${API_BASE}/news`;
 
 document.addEventListener("DOMContentLoaded", () => {
-  const form = document.querySelector("form");
+  const form = document.querySelector("#create-form");
+  if (!form) {
+    console.error("Create form not found");
+    return;
+  }
+
   const submitBtn = form.querySelector("button[type='submit']");
+  if (!submitBtn) {
+    console.error("Submit button not found");
+    return;
+  }
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     submitBtn.disabled = true;
     submitBtn.textContent = "Submitting...";
 
-    const title = document.getElementById("title").value.trim();
-    const category = document.getElementById("category").value;
-    const content = document.getElementById("content").value.trim();
-    const author = document.getElementById("author").value.trim();
-    const image = document.getElementById("image").files[0];
+    const title = document.getElementById("title")?.value.trim() || '';
+    const category = document.getElementById("category")?.value || '';
+    const content = document.getElementById("content")?.value.trim() || '';
+    const author = document.getElementById("author")?.value.trim() || '';
+    const image = document.getElementById("image")?.files[0];
 
     const formData = new FormData();
     formData.append("title", title);
@@ -24,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (image) formData.append("image", image);
 
     try {
-      const res = await fetch(API_URL, {
+      const res = await fetch("/index.php/endpoint/news", {
         method: "POST",
         body: formData
       });
@@ -33,9 +40,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
       alert("News submitted successfully.");
       form.reset();
-      window.location.href = "campus_news.html"; // Redirect to news listing
+      window.location.href = "campus_news.html";
     } catch (err) {
       alert("Submission error: " + err.message);
+    } finally {
       submitBtn.disabled = false;
       submitBtn.textContent = "Submit";
     }
