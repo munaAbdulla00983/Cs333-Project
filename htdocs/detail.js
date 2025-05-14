@@ -1,4 +1,4 @@
-const API_BASE = "/index.php/endpoint";
+const API_BASE = "/endpoint";
 const API_URL = `${API_BASE}/news`;
 let postId = null;
 
@@ -68,19 +68,22 @@ document.addEventListener("DOMContentLoaded", async () => {
     const published_at = new Date().toISOString().slice(0, 19).replace('T', ' ');
     
     try {
+      const formData = new URLSearchParams();
+      formData.append('title', title);
+      formData.append('content', content);
+      formData.append('author', author);
+      formData.append('category', category);
+      formData.append('published_at', published_at);
+
       const response = await fetch(`${API_URL}/${newsId}`, {
         method: 'PUT',
         headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
+          'Content-Type': 'application/x-www-form-urlencoded'
         },
-        body: new URLSearchParams({
-          title,
-          content,
-          author,
-          category,
-          published_at
-        })
+        body: formData.toString()
       });
+
+      const responseData = await response.json();
       
       if(response.ok) {
         alert('Changes saved successfully');
