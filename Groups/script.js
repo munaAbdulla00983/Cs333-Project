@@ -154,7 +154,7 @@ var code="";
 
     async function fetchStudyGroups() {
       try {
-         const response = await fetch('https://replit.com/@munabawaenah03/my-app#htdocs/get_study_group.php');
+         const response = await fetch('https://5207761d-52f6-4f25-af61-f48982a42036-00-3s1z67zpflpu6.sisko.replit.dev/get_study_group.php');
         studyGroups = await response.json();
         
         renderPage();
